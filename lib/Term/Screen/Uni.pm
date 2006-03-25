@@ -25,8 +25,10 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
+
+use Carp;
 
 # Preloaded methods go here.
 
@@ -68,6 +70,9 @@ sub new($%)
 	else
 		{ $self->{'handler'} = eval 'use Term::Screen; return Term::Screen->new();'; };
 
+	if (!defined($self->{'handler'}))
+		{ croak("Can not create Term::Screen handler: ".$@); };
+
 	return bless $self => $class;
 	};
 
@@ -80,7 +85,7 @@ __END__
 
 Term::Screen::Uni - Works exactly as L<Term::Screen> (version 1.09) on evry platform Term::Screen is working plus Win32
 
-I<Version 0.14>
+I<Version 0.02>
 
 =head1 SYNOPSIS
 
@@ -93,7 +98,7 @@ See L<Term::Screen> for details
 
 =head1 DESCRIPTION
 
-This module in an interface to L<Win32::Console::ANSI> on Win32,
+This module in an interface to L<Term::Screen::Win32> on Win32,
 and to L<Term::Screen> on other platforms.
 
 Written just to make one of my scripts platform-independed
@@ -106,7 +111,7 @@ None.
 
 =head1 SEE ALSO
 
-L<Term::Screen>, L<Win32::Console::ANSI>
+L<Term::Screen>, L<Term::Screen::Win32>
 
 
 =head1 AUTHOR

@@ -1,4 +1,4 @@
-Term-Screen-Uni version 0.01
+Term-Screen-Uni version 0.02
 ============================
 
 Unified Term::Screen module (works the same on termcap systems and on Win32)
@@ -19,6 +19,7 @@ This module requires these other modules and libraries:
 
   Term::Screen::Win32 (version 0.01) on Win32 platform
   Term::Screen on other platforms
+  Carp
 
 
 COPYRIGHT AND LICENCE

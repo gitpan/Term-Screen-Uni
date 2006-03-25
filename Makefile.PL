@@ -13,6 +13,8 @@ else
 	$PreReq->{'Term::Screen'} = 1.09;
 	};
 
+$PreReq->{'Carp'} = 0;
+
 WriteMakefile(
     NAME              => 'Term::Screen::Uni',
     VERSION_FROM      => 'lib/Term/Screen/Uni.pm', # finds $VERSION
