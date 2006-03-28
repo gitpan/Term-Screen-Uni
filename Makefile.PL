@@ -13,7 +13,8 @@ else
 	$PreReq->{'Term::Screen'} = 1.09;
 	};
 
-$PreReq->{'Carp'} = 0;
+$PreReq->{'Carp'}      = 0;
+$PreReq->{'Tie::Hash'} = 0;
 
 WriteMakefile(
     NAME              => 'Term::Screen::Uni',

@@ -2,5 +2,5 @@ Changes
 Makefile.PL
 MANIFEST
 README
-t/Term-Screen-Uni.t
+test.pl
 lib/Term/Screen/Uni.pm

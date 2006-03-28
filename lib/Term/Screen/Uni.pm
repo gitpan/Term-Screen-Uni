@@ -1,3 +1,43 @@
+package Term::Screen::Uni::PassToHandler;
+use 5.005;
+use strict;
+use warnings;
+
+use Carp;
+use Win32::Console::ANSI;
+
+use Tie::Hash;
+our @ISA = ('Tie::Hash');
+
+$|++;
+
+sub TIEHASH
+	{
+	my $storage = bless {}, $_[0];
+	return $storage;
+	}
+
+sub STORE
+	{
+	my $key = lc($_[1]);
+
+	if ($_[1] ne 'handler')
+		{ $_[0]{'handler'}{$_[1]} = $_[2]; };
+
+	$_[0]{'handler'} = $_[2];
+	};
+
+sub FETCH
+	{
+	my $key = lc($_[1]);
+
+	if ($_[1] ne 'handler')
+		{ return $_[0]{'handler'}{$_[1]}; };
+
+	return $_[0]{'handler'};
+	};
+
+
 package Term::Screen::Uni;
 
 use 5.005;
@@ -25,7 +65,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 use Carp;
@@ -59,11 +99,13 @@ sub flush_input { return shift(@_)->{'handler'}->flush_input(@_); };
 sub stuff_input { return shift(@_)->{'handler'}->stuff_input(@_); };
 sub cleanup     { return shift(@_)->{'handler'}->cleanup(@_); };
 
-sub new($%)
+sub new($)
 	{
 	my ($class) = @_;
 
 	my $self = {};
+
+	tie(%{$self}, 'Term::Screen::Uni::PassToHandler');
 
 	if ($^O eq 'MSWin32')
 		{ $self->{'handler'} = eval 'use Term::Screen::Win32; return Term::Screen::Win32->new();'; }
@@ -85,7 +127,7 @@ __END__
 
 Term::Screen::Uni - Works exactly as L<Term::Screen> (version 1.09) on evry platform Term::Screen is working plus Win32
 
-I<Version 0.02>
+I<Version 0.03>
 
 =head1 SYNOPSIS
 

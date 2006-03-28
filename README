@@ -1,4 +1,4 @@
-Term-Screen-Uni version 0.02
+Term-Screen-Uni version 0.03
 ============================
 
 Unified Term::Screen module (works the same on termcap systems and on Win32)
