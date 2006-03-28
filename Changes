@@ -1,5 +1,8 @@
 Revision history for Perl extension Term::Screen::Uni.
 
+0.04  Tue Mar 28 18:00:00 2006
+	- Serious bugfix: module was working on Win32 only
+
 0.03  Tue Mar 28 16:45:35 2006
 	- test.pl taken from Term::Screen to test the similarity of functionality
 
